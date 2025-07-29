@@ -3,11 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Scopes\TenantScope;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -54,8 +54,10 @@ class User extends Authenticatable
         return $this->belongsTo(Tenant::class);
     }
 
-    public function scopeTenanting(Builder $query)
+    protected static function booted(): void
     {
-        return $query->where('tenant_id', Auth::user()->tenant_id);
+        if (Auth::check()) {
+            static::addGlobalScope(new TenantScope);
+        }
     }
 }

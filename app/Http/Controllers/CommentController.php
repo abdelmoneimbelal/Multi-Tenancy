@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use App\Http\Requests\StoreArticleRequest;
-use App\Http\Requests\UpdateArticleRequest;
+use App\Models\comment;
+use App\Http\Requests\StorecommentRequest;
+use App\Http\Requests\UpdatecommentRequest;
 
-class ArticleController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $articles = Article::all();
-        return view('articles.index', get_defined_vars());
+        //
     }
 
     /**
@@ -22,22 +21,21 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create', get_defined_vars());
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreArticleRequest $request)
+    public function store(StorecommentRequest $request)
     {
-        $article = Article::create($request->validated());
-        return redirect()->route('articles.index');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Article $article)
+    public function show(comment $comment)
     {
         //
     }
@@ -45,7 +43,7 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Article $article)
+    public function edit(comment $comment)
     {
         //
     }
@@ -53,7 +51,7 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateArticleRequest $request, Article $article)
+    public function update(UpdatecommentRequest $request, comment $comment)
     {
         //
     }
@@ -61,7 +59,7 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Article $article)
+    public function destroy(comment $comment)
     {
         //
     }
